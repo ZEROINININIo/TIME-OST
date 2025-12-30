@@ -76,5 +76,33 @@ export const musicTracks: Track[] = [
       'zh-TW': '被保留的變量。當「我」需要被理解時，她會以白棲的方式存在。',
       'en': 'The Preserved Variable. When "I" need to be understood, she exists as Byaki.'
     }
+  },
+  {
+    id: 'static_menu',
+    title: 'Static Menu（静止之章）',
+    artist: 'NOVA_OST',
+    cover: COMMON_COVER,
+    sources: [
+        "https://lz.qaiu.top/parser?url=https://sbcnm.lanzoum.com/i09IZ3effnne"
+    ],
+    description: {
+      'zh-CN': '系统待机时的背景音。在抉择与开始之间，是一片宁静的电子荒原。',
+      'zh-TW': '系統待機時的背景音。在抉擇與開始之間，是一片寧靜的電子荒原。',
+      'en': 'Background noise during system standby. Between choice and commencement lies a quiet electronic wasteland.'
+    }
+  },
+  {
+    id: 'zero_point',
+    title: 'Zero Point',
+    artist: 'NOVA_OST',
+    cover: COMMON_COVER,
+    sources: [
+        "https://lz.qaiu.top/parser?url=https://sbcnm.lanzoum.com/i5y9D3ev5qni"
+    ],
+    description: {
+      'zh-CN': '零点章节的背景音乐。这是她的责任。',
+      'zh-TW': '零點章節的背景音樂。這是她的責任。',
+      'en': 'Background music for the Zero Point chapter. This is her responsibility.'
+    }
   }
 ];

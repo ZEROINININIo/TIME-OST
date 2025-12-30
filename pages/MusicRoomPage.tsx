@@ -136,6 +136,7 @@ const MusicRoomPage: React.FC<MusicRoomPageProps> = ({ language, isLightTheme })
             setSourceIndex(prev => prev + 1);
         } else {
             console.error("All sources failed for this track.");
+            setIsPlaying(false); // Stop playing state if all sources fail
         }
     };
 
