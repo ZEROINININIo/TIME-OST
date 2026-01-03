@@ -104,5 +104,19 @@ export const musicTracks: Track[] = [
       'zh-TW': '零點章節的背景音樂。這是她的責任。',
       'en': 'Background music for the Zero Point chapter. This is her responsibility.'
     }
+  },
+  {
+    id: 'abstract_glass',
+    title: 'Abstract Glass Menu',
+    artist: 'NOVA_OST',
+    cover: COMMON_COVER,
+    sources: [
+        "https://lz.qaiu.top/parser?url=https://sbcnm.lanzoum.com/ilf0y3f5dxmh"
+    ],
+    description: {
+      'zh-CN': '画廊使用的背景音乐。',
+      'zh-TW': '畫廊使用的背景音樂。',
+      'en': 'Background music used in the gallery.'
+    }
   }
 ];
