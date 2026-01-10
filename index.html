@@ -31,6 +31,7 @@
             animation: {
               'glitch': 'glitch 1s linear infinite',
               'scanline': 'scanline 8s linear infinite',
+              'scanline-fast': 'scanline 3s linear infinite',
               'fade-in': 'fadeIn 0.5s ease-out forwards',
               'slide-in': 'slideIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
               'crash': 'crash 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite',
@@ -43,6 +44,8 @@
               'shake-violent': 'shakeViolent 0.25s infinite',
               'shake-gentle': 'shakeGentle 4s ease-in-out infinite',
               'shimmer': 'shimmer 2s linear infinite',
+              'aurora': 'aurora 10s linear infinite',
+              'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
             },
             keyframes: {
               glitch: {
@@ -119,6 +122,15 @@
               shimmer: {
                 '0%': { transform: 'translateX(-100%)' },
                 '100%': { transform: 'translateX(200%)' }
+              },
+              aurora: {
+                '0%': { backgroundPosition: '0% 50%' },
+                '50%': { backgroundPosition: '100% 50%' },
+                '100%': { backgroundPosition: '0% 50%' }
+              },
+              pulseGlow: {
+                '0%, 100%': { opacity: '0.5', filter: 'blur(8px)' },
+                '50%': { opacity: '1', filter: 'blur(12px)' }
               }
             }
           }
@@ -144,7 +156,7 @@
 
       @font-face {
         font-family: 'CustomFont02';
-        src: url('/02.ttf') format('truetype');
+        src: url('https://cik07-cos.7moor-fs2.com/im/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/2dc210012dc63afd/02.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
       }
@@ -233,6 +245,86 @@
       }
       .shadow-hard-sm {
         box-shadow: 2px 2px 0px 0px currentColor;
+      }
+
+      /* === VISUAL FX === */
+      
+      /* Holographic Card Effect */
+      .holo-card {
+        position: relative;
+        overflow: hidden;
+      }
+      .holo-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0.3),
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transform: skewX(-25deg);
+        transition: left 0.5s ease-in-out;
+        pointer-events: none;
+        z-index: 20;
+      }
+      .holo-card:hover::before {
+        left: 150%;
+        transition: left 0.7s ease-in-out;
+      }
+
+      /* Aurora Gradient (Animated Background) */
+      .bg-aurora {
+        background: linear-gradient(270deg, #0f172a, #1e293b, #0c4a6e, #115e59);
+        background-size: 800% 800%;
+        animation: aurora 15s ease infinite;
+      }
+      .bg-aurora-light {
+        background: linear-gradient(270deg, #f0f9ff, #e0f2fe, #bae6fd, #e0f2fe);
+        background-size: 400% 400%;
+        animation: aurora 10s ease infinite;
+      }
+
+      /* RGB Shift Text */
+      .rgb-text {
+        position: relative;
+        display: inline-block;
+      }
+      .rgb-text:hover {
+        animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        color: var(--ash-light);
+      }
+      .rgb-text:hover::before {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: #0ff;
+        z-index: -1;
+        opacity: 0.8;
+        animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite reverse;
+        transform: translate(-2px, -2px);
+      }
+      .rgb-text:hover::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: #f0f;
+        z-index: -2;
+        opacity: 0.8;
+        animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        transform: translate(2px, 2px);
       }
 
       /* === CRT EFFECTS === */

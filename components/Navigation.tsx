@@ -50,10 +50,10 @@ const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 h-16 bg-ash-black border-b-2 border-ash-gray/20 z-50 flex items-center justify-between px-4 md:px-8 shadow-2xl">
+      <nav className={`fixed top-0 left-0 right-0 h-16 border-b-2 border-ash-gray/20 z-50 flex items-center justify-between px-4 md:px-8 shadow-2xl backdrop-blur-md transition-colors duration-500 ${isLightTheme ? 'bg-white/80' : 'bg-ash-black/70'}`}>
           <div className="flex items-center gap-4">
                {/* Logo Image */}
-               <div className="relative w-8 h-8 bg-ash-black border border-ash-gray/50 p-0.5 shadow-hard group">
+               <div className={`relative w-8 h-8 border p-0.5 shadow-hard group transition-colors ${isLightTheme ? 'bg-white border-zinc-300' : 'bg-ash-black border-ash-gray/50'}`}>
                    <img 
                       src="https://free.picui.cn/free/2025/12/08/6936e856897d6.png" 
                       alt="Nova Labs"
@@ -61,10 +61,10 @@ const Navigation: React.FC<NavigationProps> = ({
                    />
               </div>
               <div className="leading-none">
-                  <h1 className="text-2xl font-black text-ash-light tracking-tighter font-custom-02 glitch-text" data-text="VoidOS">
+                  <h1 className={`text-2xl font-black tracking-tighter font-custom-02 glitch-text ${isLightTheme ? 'text-zinc-900' : 'text-ash-light'}`} data-text="VoidOS">
                     VoidOS
                   </h1>
-                  <div className="text-[10px] text-ash-gray font-custom-02 tracking-widest flex items-center gap-2">
+                  <div className={`text-[10px] font-custom-02 tracking-widest flex items-center gap-2 ${isLightTheme ? 'text-zinc-500' : 'text-ash-gray'}`}>
                     <span>NOVA_LABS // MUSIC_ROOM</span>
                     <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
                   </div>
@@ -75,8 +75,8 @@ const Navigation: React.FC<NavigationProps> = ({
                 onClick={() => setShowSettings(true)}
                 className={`flex items-center gap-2 px-3 py-1.5 border-2 transition-all duration-300 group shadow-hard ${
                     showSettings
-                    ? 'bg-ash-light text-ash-black border-ash-light'
-                    : 'bg-ash-black text-ash-gray border-ash-gray/50 hover:border-ash-light hover:text-ash-light'
+                    ? (isLightTheme ? 'bg-zinc-800 text-white border-zinc-800' : 'bg-ash-light text-ash-black border-ash-light')
+                    : (isLightTheme ? 'bg-white/50 text-zinc-600 border-zinc-300 hover:border-zinc-800 hover:text-zinc-900' : 'bg-black/20 text-ash-gray border-ash-gray/50 hover:border-ash-light hover:text-ash-light')
                 }`}
             >
                 <Settings size={14} className={`transition-transform duration-700 ${showSettings ? 'rotate-180' : ''}`} />
@@ -91,20 +91,20 @@ const Navigation: React.FC<NavigationProps> = ({
             onClick={() => setShowSettings(false)}
         >
             <div 
-                className="w-[350px] bg-ash-black border-2 border-ash-light p-6 shadow-[0_0_50px_rgba(0,0,0,0.7)] relative animate-zoom-in-fast"
+                className={`w-[350px] border-2 p-6 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative animate-zoom-in-fast ${isLightTheme ? 'bg-white border-zinc-900' : 'bg-ash-black border-ash-light'}`}
                 onClick={e => e.stopPropagation()}
             >
                 {/* Modal Header */}
-                <div className="flex items-center justify-between mb-6 border-b-2 border-ash-gray/30 pb-4">
+                <div className={`flex items-center justify-between mb-6 border-b-2 pb-4 ${isLightTheme ? 'border-zinc-200' : 'border-ash-gray/30'}`}>
                     <div className="flex items-center gap-3">
-                        <div className="p-1.5 bg-ash-light text-ash-black">
+                        <div className={`p-1.5 ${isLightTheme ? 'bg-zinc-900 text-white' : 'bg-ash-light text-ash-black'}`}>
                             <Music size={16} />
                         </div>
-                        <h2 className="text-sm font-black text-ash-light uppercase tracking-widest font-custom-02">{t.settingsTitle}</h2>
+                        <h2 className={`text-sm font-black uppercase tracking-widest font-custom-02 ${isLightTheme ? 'text-zinc-900' : 'text-ash-light'}`}>{t.settingsTitle}</h2>
                     </div>
                     <button 
                         onClick={() => setShowSettings(false)} 
-                        className="text-ash-gray hover:text-ash-light transition-colors hover:bg-ash-dark p-1"
+                        className={`transition-colors p-1 ${isLightTheme ? 'text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100' : 'text-ash-gray hover:text-ash-light hover:bg-ash-dark'}`}
                     >
                         <X size={20} />
                     </button>
@@ -115,13 +115,13 @@ const Navigation: React.FC<NavigationProps> = ({
                     {/* Language Row */}
                     <button 
                       onClick={cycleLanguage}
-                      className="flex items-center justify-between w-full px-4 py-3 border-2 transition-all duration-300 shadow-hard bg-ash-black text-ash-gray border-ash-gray/50 hover:border-ash-light hover:text-ash-light group"
+                      className={`flex items-center justify-between w-full px-4 py-3 border-2 transition-all duration-300 shadow-hard group ${isLightTheme ? 'bg-zinc-50 border-zinc-200 hover:border-zinc-900 hover:text-zinc-900 text-zinc-600' : 'bg-ash-black text-ash-gray border-ash-gray/50 hover:border-ash-light hover:text-ash-light'}`}
                     >
                       <div className="flex items-center gap-3">
                         <Globe size={16} />
                         <span className="text-xs font-custom-02 font-bold uppercase">Language</span>
                       </div>
-                      <span className="text-xs font-custom-02 font-bold bg-ash-dark px-2 py-1 border border-ash-gray/30 group-hover:border-ash-gray">{getLangLabel()}</span>
+                      <span className={`text-xs font-custom-02 font-bold px-2 py-1 border ${isLightTheme ? 'bg-white border-zinc-200' : 'bg-ash-dark border-ash-gray/30 group-hover:border-ash-gray'}`}>{getLangLabel()}</span>
                     </button>
 
                     {/* Grid Controls */}
@@ -134,7 +134,7 @@ const Navigation: React.FC<NavigationProps> = ({
                 </div>
 
                 {/* Modal Footer */}
-                <div className="mt-6 pt-3 border-t border-dashed border-ash-gray/30 flex justify-between items-center text-[10px] text-ash-gray font-custom-02">
+                <div className={`mt-6 pt-3 border-t border-dashed flex justify-between items-center text-[10px] font-custom-02 ${isLightTheme ? 'border-zinc-300 text-zinc-400' : 'border-ash-gray/30 text-ash-gray'}`}>
                     <span>SYS_CFG // AUDIO_ONLY</span>
                     <span className="opacity-50">VoidOS</span>
                 </div>

@@ -86,7 +86,7 @@ export const musicTracks: Track[] = [
         "https://lz.qaiu.top/parser?url=https://sbcnm.lanzoum.com/i09IZ3effnne"
     ],
     description: {
-      'zh-CN': '系统待机时的背景音。在抉择与开始之间，是一片宁静的电子荒原。',
+      'zh-CN': '主系统待机时的背景音。在抉择与开始之间，是一片宁静的电子荒原。',
       'zh-TW': '系統待機時的背景音。在抉擇與開始之間，是一片寧靜的電子荒原。',
       'en': 'Background noise during system standby. Between choice and commencement lies a quiet electronic wasteland.'
     }
@@ -117,6 +117,20 @@ export const musicTracks: Track[] = [
       'zh-CN': '画廊使用的背景音乐。',
       'zh-TW': '畫廊使用的背景音樂。',
       'en': 'Background music used in the gallery.'
+    }
+  },
+  {
+    id: 'zeri_circuit',
+    title: 'Zeri’s Quiet Circuit',
+    artist: 'NOVA_OST',
+    cover: COMMON_COVER,
+    sources: [
+        "https://lz.qaiu.top/parser?url=https://sbcnm.lanzoum.com/ii2Uj3frz2le"
+    ],
+    description: {
+      'zh-CN': '原本是给芷漓支线章节的专有曲子，不过现在变成通用曲了，目前应用在零碎之雨章节。',
+      'zh-TW': '原本是給芷漓支線章節的專有曲子，不過現在變成通用曲了，目前應用在零碎之雨章節。',
+      'en': 'Originally a dedicated track for Zeri\'s side story chapter, but now it has become a generic track, currently used in the Fragmented Rain chapter.'
     }
   }
 ];

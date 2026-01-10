@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import MusicRoomPage from './pages/MusicRoomPage';
 import CustomCursor from './components/CustomCursor';
+import ParticleField from './components/VisualEffects/ParticleField';
 import { Language } from './types';
 
 const STORAGE_KEY = 'nova_music_room_v1';
@@ -63,13 +64,16 @@ const App: React.FC = () => {
   return (
     <>
       <CustomCursor />
+      
+      {/* Dynamic Background Layer (Z-Index 0) */}
+      <ParticleField isLightTheme={isLightTheme} />
 
-      {/* Render Main App */}
-      <div className="flex flex-col h-screen supports-[height:100dvh]:h-[100dvh] bg-ash-black text-ash-light overflow-hidden font-mono selection:bg-ash-light selection:text-ash-black cursor-none">
+      {/* Render Main App Layer (Z-Index 10, Transparent Background) */}
+      <div className="flex flex-col h-screen supports-[height:100dvh]:h-[100dvh] bg-transparent text-ash-light overflow-hidden font-mono selection:bg-ash-light selection:text-ash-black cursor-none relative z-10">
           
           {/* Global Texture Overlays */}
           <div className="noise-overlay"></div>
-          <div className="absolute inset-0 z-0 bg-grid-hard pointer-events-none opacity-50"></div>
+          <div className="absolute inset-0 z-0 bg-grid-hard pointer-events-none opacity-30"></div>
 
           <Navigation 
             language={language}

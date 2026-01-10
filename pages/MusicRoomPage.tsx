@@ -252,17 +252,18 @@ const MusicRoomPage: React.FC<MusicRoomPageProps> = ({ language, isLightTheme })
 
   return (
     // Mobile: flex-col-reverse (Playlist at bottom), Desktop: flex-row (Playlist at left)
-    <div className={`h-full flex flex-col-reverse md:flex-row pt-16 ${isLightTheme ? 'bg-zinc-100 text-zinc-900' : 'bg-ash-black text-ash-light'}`}>
+    // Using background transparency to show particles
+    <div className={`h-full flex flex-col-reverse md:flex-row pt-16 ${isLightTheme ? 'bg-zinc-100/90 text-zinc-900' : 'bg-transparent text-ash-light'}`}>
         
         {/* Playlist Container */}
         {/* Mobile: Top border, Height dynamic. Desktop: Right border, Full Height */}
         <div 
             className={`
                 w-full md:w-1/3 lg:w-1/4 flex flex-col shrink-0 
-                transition-all duration-300 ease-in-out
+                transition-all duration-300 ease-in-out backdrop-blur-md
                 ${isMobilePlaylistOpen ? 'h-[35vh]' : 'h-14'} 
                 md:h-auto border-t-2 md:border-t-0 md:border-r-2 
-                ${isLightTheme ? 'border-zinc-300 bg-white' : 'border-ash-dark bg-ash-black/50'}
+                ${isLightTheme ? 'border-zinc-300 bg-white/80' : 'border-ash-dark bg-ash-black/40'}
             `}
         >
             <div 
@@ -289,22 +290,52 @@ const MusicRoomPage: React.FC<MusicRoomPageProps> = ({ language, isLightTheme })
                             setCurrentTrackIndex(idx);
                             setIsPlaying(false); // Manual Click -> Default Paused
                         }}
-                        className={`w-full text-left p-2 md:p-3 border text-xs transition-all flex items-center gap-3 group relative overflow-hidden ${
-                            currentTrackIndex === idx 
-                            ? (isLightTheme ? 'bg-zinc-200 border-zinc-400 text-black' : 'bg-ash-light text-ash-black border-ash-light')
-                            : (isLightTheme ? 'bg-white border-transparent hover:border-zinc-300 hover:bg-zinc-50' : 'bg-transparent border-transparent hover:border-ash-gray/50 hover:bg-ash-dark/30')
-                        }`}
+                        className={`
+                            w-full text-left p-3 border-l-4 transition-all duration-300 relative group overflow-hidden
+                            ${currentTrackIndex === idx
+                                ? (isLightTheme
+                                    ? 'bg-zinc-200 border-zinc-900 text-zinc-900 shadow-lg' 
+                                    : 'bg-ash-light/10 border-ash-light text-ash-light shadow-[0_0_20px_rgba(228,228,231,0.15)]') 
+                                : (isLightTheme
+                                    ? 'bg-white/40 border-transparent text-zinc-500 hover:bg-white/80 hover:text-zinc-900 hover:border-zinc-300' 
+                                    : 'bg-transparent border-transparent text-ash-gray hover:bg-ash-dark/40 hover:text-ash-white hover:border-ash-gray/50') 
+                            }
+                        `}
                     >
-                        <div className={`w-6 text-center font-bold ${currentTrackIndex === idx ? 'animate-pulse' : 'opacity-30'}`}>
-                            {currentTrackIndex === idx ? <Activity size={14} /> : (idx + 1).toString().padStart(2, '0')}
+                        {/* Visual FX: Aurora Background (Active or Hover) */}
+                        <div className={`absolute inset-0 bg-aurora transition-opacity duration-500 pointer-events-none
+                            ${currentTrackIndex === idx ? 'opacity-20' : 'opacity-0 group-hover:opacity-10'}`}>
                         </div>
-                        <div className="flex-1 truncate">
-                            <div className="font-bold truncate">{track.title}</div>
-                            <div className="opacity-60 text-[10px]">{track.artist}</div>
-                        </div>
+
+                        {/* Visual FX: Scanning Line (Active Only) */}
                         {currentTrackIndex === idx && (
-                            <div className="absolute inset-0 bg-halftone opacity-10 pointer-events-none"></div>
+                             <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent)] animate-shimmer pointer-events-none"></div>
                         )}
+
+                        {/* Content Layout */}
+                        <div className="relative z-10 flex items-center gap-3">
+                            {/* Icon/Index */}
+                            <div className={`w-6 text-center font-mono font-bold text-xs ${currentTrackIndex === idx ? 'animate-pulse' : 'opacity-50'}`}>
+                                 {currentTrackIndex === idx ? <Activity size={14} /> : (idx + 1).toString().padStart(2, '0')}
+                            </div>
+
+                            {/* Info */}
+                            <div className="flex-1 min-w-0">
+                                <div className={`font-bold text-xs md:text-sm truncate font-custom-02 ${currentTrackIndex === idx ? 'glitch-text' : ''}`} data-text={track.title}>
+                                    {track.title}
+                                </div>
+                                <div className="text-[10px] opacity-60 font-mono truncate">{track.artist}</div>
+                            </div>
+
+                            {/* Playing Indicator (Mini Visualizer) */}
+                            {currentTrackIndex === idx && (
+                                <div className="flex gap-0.5 items-end h-3 opacity-80 shrink-0">
+                                    <div className="w-0.5 bg-current animate-[bounce_1s_infinite] h-2"></div>
+                                    <div className="w-0.5 bg-current animate-[bounce_1.2s_infinite] h-3"></div>
+                                    <div className="w-0.5 bg-current animate-[bounce_0.8s_infinite] h-1"></div>
+                                </div>
+                            )}
+                        </div>
                     </button>
                 ))}
             </div>
@@ -358,7 +389,7 @@ const MusicRoomPage: React.FC<MusicRoomPageProps> = ({ language, isLightTheme })
             </div>
 
             {/* Controls Bar */}
-            <div className={`p-4 md:p-6 border-t-2 shrink-0 ${isLightTheme ? 'bg-white border-zinc-300' : 'bg-ash-black border-ash-dark'}`}>
+            <div className={`p-4 md:p-6 border-t-2 shrink-0 backdrop-blur-md ${isLightTheme ? 'bg-white/80 border-zinc-300' : 'bg-ash-black/40 border-ash-dark'}`}>
                 <div className="max-w-4xl mx-auto flex flex-col gap-3 md:gap-4">
                     {/* Progress */}
                     <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-xs font-mono">
