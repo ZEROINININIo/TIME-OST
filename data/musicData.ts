@@ -93,7 +93,7 @@ export const musicTracks: Track[] = [
   },
   {
     id: 'zero_point',
-    title: 'Zero Point',
+    title: 'Zero Point（零时）',
     artist: 'NOVA_OST',
     cover: COMMON_COVER,
     sources: [
@@ -107,7 +107,7 @@ export const musicTracks: Track[] = [
   },
   {
     id: 'abstract_glass',
-    title: 'Abstract Glass Menu',
+    title: 'Abstract Glass Menu（广览泛义界面）',
     artist: 'NOVA_OST',
     cover: COMMON_COVER,
     sources: [
@@ -121,7 +121,7 @@ export const musicTracks: Track[] = [
   },
   {
     id: 'zeri_circuit',
-    title: 'Zeri’s Quiet Circuit',
+    title: 'Zeri’s Quiet Circuit（静默回路）',
     artist: 'NOVA_OST',
     cover: COMMON_COVER,
     sources: [
