@@ -1,7 +1,7 @@
 
 import { Track } from '../types';
 
-const COMMON_COVER = "https://free.picui.cn/free/2025/12/15/694012a94d57f.png";
+const COMMON_COVER = "https://cdn.imgos.cn/vip/2026/01/17/696a613f690a3.jpg";
 
 export const musicTracks: Track[] = [
   {
@@ -75,6 +75,20 @@ export const musicTracks: Track[] = [
       'zh-CN': '被保留的变量。当‘我’需要被理解时，她会以白栖的方式存在。',
       'zh-TW': '被保留的變量。當「我」需要被理解時，她會以白棲的方式存在。',
       'en': 'The Preserved Variable. When "I" need to be understood, she exists as Byaki.'
+    }
+  },
+  {
+    id: 'flies',
+    title: 'Flies',
+    artist: 'NOVA_OST',
+    cover: COMMON_COVER,
+    sources: [
+        "https://lz.qaiu.top/parser?url=https://sbcnm.lanzoum.com/iBmJH3g8frgb"
+    ],
+    description: {
+      'zh-CN': '重要的曲目。',
+      'zh-TW': '重要的曲目。',
+      'en': 'Important song.'
     }
   },
   {
